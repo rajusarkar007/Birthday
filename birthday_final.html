@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffedf5">
+  <title>A Little Surprise for You 💗</title>
+  <style>
+    :root {
+      --pink: #ff6f9f;
+      --deep: #a23d75;
+      --purple: #8d72df;
+      --ink: #482c50;
+      --cream: #fff9fc;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; min-height: 100vh; overflow-x: hidden;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 10%, #ffe0ed 0, transparent 32%),
+        radial-gradient(circle at 85% 25%, #e8dcff 0, transparent 30%),
+        linear-gradient(145deg, #fff5fa, #f8f2ff 55%, #fff0f5);
+    }
+    .sparkles { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .sparkle { position: absolute; opacity: .45; animation: drift 9s ease-in-out infinite; }
+    .sparkle:nth-child(1) { top: 12%; left: 8%; font-size: 25px; }
+    .sparkle:nth-child(2) { top: 24%; right: 9%; font-size: 20px; animation-delay: -3s; }
+    .sparkle:nth-child(3) { top: 70%; left: 5%; font-size: 18px; animation-delay: -5s; }
+    .sparkle:nth-child(4) { top: 80%; right: 8%; font-size: 28px; animation-delay: -2s; }
+    @keyframes drift { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-18px) rotate(10deg); } }
+    main {
+      position: relative; z-index: 1; width: min(92%, 720px);
+      margin: 0 auto; padding: 34px 0 46px; text-align: center;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid #f7c5db; background: #ffffffb8; color: #a34d7d;
+      padding: 9px 15px; border-radius: 999px; font-size: .88rem;
+      box-shadow: 0 8px 24px #d58bb31c;
+    }
+    .hero-heart { font-size: clamp(52px, 12vw, 78px); margin: 17px 0 3px; display: block; filter: drop-shadow(0 8px 12px #f18bb75c); animation: heartbeat 1.6s ease-in-out infinite; }
+    @keyframes heartbeat { 0%,100% { transform: scale(1); } 12% { transform: scale(1.1); } 24% { transform: scale(1); } 36% { transform: scale(1.07); } }
+    h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: clamp(2.25rem, 8vw, 4.25rem); line-height: 1.08; margin: 12px 0; color: #8c477e; letter-spacing: -1.5px; }
+    h1 span { color: #ec6596; }
+    .subtitle { max-width: 500px; margin: 0 auto; font-size: clamp(1rem, 3.6vw, 1.18rem); line-height: 1.7; color: #765b7d; }
+    .card {
+      margin: 27px auto 20px; padding: clamp(20px, 5vw, 34px);
+      border: 1px solid #f4c8df; border-radius: 25px;
+      background: #ffffffc9; box-shadow: 0 18px 50px #9e6a9d1c;
+      backdrop-filter: blur(10px);
+    }
+    .gift-emoji { font-size: 58px; display: inline-block; margin: 4px 0 12px; transition: transform .5s; }
+    .card h2 { font-family: Georgia, serif; font-size: clamp(1.45rem, 5vw, 2rem); margin: 0 0 10px; color: #8d4c83; }
+    .card p { line-height: 1.75; color: #765b7d; margin: 0 auto 20px; max-width: 540px; }
+    button {
+      border: 0; border-radius: 999px; padding: 14px 24px; min-height: 50px;
+      color: white; font-weight: 700; font-size: 1rem; letter-spacing: .2px;
+      background: linear-gradient(110deg, #ff76a5, #a184e8);
+      box-shadow: 0 10px 22px #d578b542; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 13px 26px #d578b55c; }
+    button:active { transform: scale(.98); }
+    .secondary { color: #9c5484; background: #fff; border: 1px solid #efc4dc; box-shadow: none; font-size: .92rem; padding: 11px 18px; min-height: 44px; }
+    .hidden { display: none !important; }
+    #letter { text-align: left; animation: rise .8s ease both; }
+    #letter .letter-title { text-align: center; }
+    #letter p { max-width: none; margin: 12px 0; }
+    .signature { text-align: right; color: #d85e92; font-family: Georgia, serif; font-size: 1.25rem; margin-top: 18px; }
+    @keyframes rise { from { opacity: 0; transform: translateY(20px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .bottom-note { font-size: .88rem; color: #9b7b9d; margin-top: 25px; }
+    .bottom-note span { color: #f16e9f; }
+    .heart-float { position: fixed; bottom: -35px; z-index: 3; pointer-events: none; animation: floatUp 4.5s linear forwards; }
+    @keyframes floatUp { 0% { transform: translateY(0) rotate(0) scale(.7); opacity: 0; } 12% { opacity: .9; } 100% { transform: translateY(-110vh) rotate(35deg) scale(1.35); opacity: 0; } }
+    .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 15px; }
+    footer { color: #aa8ca8; font-size: .8rem; margin-top: 25px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+  </style>
+
+
+<style>
+#letter {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            rgba(8, 4, 14, 0.42),
+            rgba(8, 4, 14, 0.62)
+        ),
+        url("birthday-bg.png") center center / cover no-repeat;
+    color: #ffffff !important;
+}
+
+#letter h1,
+#letter h2 {
+    color: #fff7ff !important;
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.95),
+        0 0 18px rgba(255,190,255,.35);
+}
+
+#letter p,
+#letter .message {
+    color: #ffffff !important;
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.95),
+        0 1px 10px rgba(0,0,0,.85);
+}
+
+#letter .final,
+#letter .signature {
+    color: #ffe8ff !important;
+    text-shadow:
+        0 2px 6px rgba(0,0,0,.95),
+        0 0 18px rgba(255,190,255,.45);
+}
+
+#letter button {
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,.7);
+}
+
+@media (max-width: 700px) {
+    #letter {
+        background-position: center top;
+    }
+}
+</style>
+
+</head>
+<body>
+  <div class="sparkles" aria-hidden="true">
+    <span class="sparkle">✦</span><span class="sparkle">♡</span><span class="sparkle">✧</span><span class="sparkle">♡</span>
+  </div>
+
+  <main>
+    <div class="pill">💌 A tiny surprise, made with love</div>
+    <span class="hero-heart" aria-hidden="true">💗</span>
+    <h1>Happy Birthday,<br><span id="heroName">My Princess</span>!</h1>
+    <p class="subtitle">Today is all about you — your smile, your happiness, and all the little things that make you so special to me. ✨</p>
+
+    <section class="card" id="giftCard">
+      <div class="gift-emoji" id="giftEmoji" aria-hidden="true">🎁</div>
+      <h2>I have something for you...</h2>
+      <p>A little birthday gift is waiting here. It isn't wrapped in paper, but it comes straight from my heart. 💕</p>
+      <button id="openGift" type="button">Open Your Surprise 💝</button>
+    </section>
+
+    <section class="card hidden" id="letter" aria-live="polite">
+      <div class="letter-title">
+        <div style="font-size:2.2rem">🎂 💖 🎂</div>
+        <h2>Happy Birthday, Shila!</h2>
+      </div>
+      <p>Happy Birthday! ❤️
+
+I know it's been a long time since we last talked like we used to, and life has taken us in different directions. Maybe we don't share our random stories or silly conversations anymore, but that doesn't mean I've forgotten you or the memories we made together.
+
+Honestly, some people remain special even when they become distant, and you're definitely one of them. Sometimes I miss those old days, those little moments and conversations that once felt so normal but now have become beautiful memories.
+
+I don't know how things have changed so much with time, but I genuinely hope you're doing well and happy. On your special day, I wish you all the happiness, success, and love that you truly deserve. May all your dreams come true, and may life always give you countless reasons to smile.
+
+Maybe we don't talk anymore like before, but I'll always be grateful for the memories we shared. No matter how much time passes, I will always wish the best for you.
+
+Take care, keep smiling, and never stop being the wonderful person you are.
+
+Happy Birthday once again! You will always remain a special part of some of my favorite memories. ❤️🫶</p>
+      <p class="signature">With all my love, ❤️<br><span id="senderName">Your Friend</span></p>
+      <div class="actions">
+        <button id="moreHearts" type="button">More Love! 💕</button>
+        <button id="musicButton" class="secondary" type="button">Play a little melody ♪</button>
+      </div>
+    </section>
+
+    <div class="bottom-note">Made just for you, with <span>♥</span> and a little bit of magic.</div>
+    <footer>A birthday surprise from someone who cares about you ✨</footer>
+  </main>
+
+  <!-- AUDIO MOVED HERE: must be ABOVE the script -->
+  <audio id="birthdaySong" src="birthday-song.mp3" preload="auto"></audio>
+
+  <script>
+const GIRLFRIEND_NAME = "My Dear Shila";
+const YOUR_NAME = "Your Friend";
+
+document.title = `Happy Birthday, ${GIRLFRIEND_NAME} 💗`;
+
+const heroName = document.getElementById("heroName");
+const letterName = document.getElementById("letterName");
+const senderName = document.getElementById("senderName");
+
+if (heroName) heroName.textContent = GIRLFRIEND_NAME;
+if (letterName) letterName.textContent = GIRLFRIEND_NAME;
+if (senderName) senderName.textContent = YOUR_NAME;
+
+const giftCard = document.getElementById("giftCard");
+const letter = document.getElementById("letter");
+const openGift = document.getElementById("openGift");
+const giftEmoji = document.getElementById("giftEmoji");
+
+function burstHearts(amount = 22) {
+    const symbols = ["💗", "💖", "💕", "💘", "♡", "✨"];
+
+    for (let i = 0; i < amount; i++) {
+        const heart = document.createElement("span");
+        heart.className = "heart-float";
+        heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.fontSize = `${16 + Math.random() * 24}px`;
+        heart.style.animationDuration = `${3 + Math.random() * 3}s`;
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6500);
+    }
+}
+
+if (openGift) {
+    openGift.addEventListener("click", () => {
+        if (!giftCard || !letter) return;
+
+        if (giftEmoji) {
+            giftEmoji.textContent = "💖";
+            giftEmoji.style.transform = "scale(1.25) rotate(8deg)";
+        }
+
+        giftCard.classList.add("hidden");
+        letter.classList.remove("hidden");
+
+        burstHearts(38);
+
+        setTimeout(() => {
+            letter.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }, 100);
+    });
+}
+
+const moreHearts = document.getElementById("moreHearts");
+if (moreHearts) {
+    moreHearts.addEventListener("click", () => burstHearts(30));
+}
+
+/* ---------- AUDIO PART (fixed) ---------- */
+const musicButton = document.getElementById("musicButton");
+
+// Use the <audio> tag if found, otherwise create the audio in JavaScript
+const birthdaySong =
+    document.getElementById("birthdaySong") || new Audio("birthday-song.mp3");
+
+if (musicButton) {
+    musicButton.textContent = "Play Birthday Song 🎵";
+
+    musicButton.addEventListener("click", async () => {
+        try {
+            if (birthdaySong.paused) {
+                await birthdaySong.play();
+                musicButton.textContent = "Pause Birthday Song ⏸️";
+            } else {
+                birthdaySong.pause();
+                musicButton.textContent = "Play Birthday Song 🎵";
+            }
+        } catch (error) {
+            musicButton.textContent = "Play Birthday Song 🎵";
+            console.error("Could not play birthday-song.mp3:", error);
+            alert("Song file not found or can't play. Make sure birthday-song.mp3 is in the same folder as this HTML file.");
+        }
+    });
+
+    birthdaySong.addEventListener("ended", () => {
+        musicButton.textContent = "Play Birthday Song 🎵";
+    });
+}
+</script>
+
+</body>
+</html>
